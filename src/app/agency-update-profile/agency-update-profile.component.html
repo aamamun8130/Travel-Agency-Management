@@ -1,0 +1,41 @@
+<!--The content below is only a placeholder and can be replaced.-->
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+
+</style>
+</head>
+<body>
+
+<h2>Update Your Profile</h2>
+
+<form action="">
+
+  <div class="container">
+    <label for="uname"><b>Agency Name</b></label>
+    <input #ana type="text" value={{logUser.name}}>
+
+    <label for="psw"><b>Phone No.</b></label>
+    <input #phn type="text" value={{logUser.phone}}>
+
+    <label for="uname"><b>Tel No.</b></label>
+    <input #tphn type="text" value={{logUser.telephone}}>
+    <label for="uname"><b>Address</b></label>
+    <textarea #ad style="height: 100px; width:300px;" value={{logUser.address}}></textarea>       
+    <button type="button" (click)="aUpdateProfile(ana.value,phn.value,tphn.value,ad.value)">Update</button>
+  </div>
+
+  <div class="container" style="background-color:#f1f1f1">
+    <button type="button" class="cancelbtn">Cancel</button>
+  </div>
+</form>
+
+</body>
+</html>
+
+
+
+

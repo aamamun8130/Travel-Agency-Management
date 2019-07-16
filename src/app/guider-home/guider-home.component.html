@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <style>
+  </style>
+</head>
+
+<body>
+
+  <div class="header">
+    <h1>Wellcome To My site G-Home</h1>
+    <!-- <p>Resize the browser window to see the effect.</p> -->
+  </div>
+
+  <div class="topnav">
+    <a href="/GuiderHome/gcreateprofile">Create Profile</a>
+    <a href="/GuiderHome/gupdateprofile">Update profile</a>
+    <a href="/GuiderHome/gshownoti">Hire Notification</a>
+    <a (click)="logout()" style="float:right">Logout</a>
+  </div>
+
+  <div class="row">
+    <div class="leftcolumn">
+      <div class="card">
+        <!-- <h5>Title description, Dec 7, 2017</h5> -->
+        <div class="fakeimg" style="height:835px; background-color: #f1f1f1 !important;">
+          <router-outlet></router-outlet>
+
+        </div>
+      </div>
+
+    </div>
+    <div class="rightcolumn">
+      <div class="card">
+        <h2>Your Profile</h2>
+        <div class="fakeimg" style="height:300px; background-color: #f1f1f1 !important;">
+          <div style="text-align: center;">
+            <img src="assets/img/profile1.jpg"
+              style="border-radius: 5px; height: 100px; width: 90px; border: 2px solid blue;">
+          </div>
+          <table>
+            <tr>
+              <td>Name</td>
+              <td>: {{loguser.name}}</td>
+            </tr>
+            <tr>
+              <td>Email</td>
+              <td>: {{loguser.email}}</td>
+            </tr>
+            <tr>
+              <td>Phone</td>
+              <td>: {{loguser.phone}}</td>
+            </tr>
+            <tr>
+              <td>Tel</td>
+              <td>: {{loguser.telephone}}</td>
+            </tr>
+            <tr>
+              <td>User Type</td>
+              <td>: {{loguser.type}}</td>
+            </tr>
+            <tr>
+              <td>Address</td>
+              <td>: {{loguser.address}}</td>
+            </tr>
+          </table>
+
+        </div>
+        <!-- <p>Some text about me in culpa qui officia deserunt mollit anim..</p> -->
+      </div>
+      <div class="card">
+        <h3>Your Running Offer</h3>
+        <div class="fakeimg" style="background-color: #f1f1f1 !important;">
+          <p>Image</p>
+        </div>
+        <div class="fakeimg" style="background-color: #f1f1f1 !important;">
+          <p>Image</p>
+        </div>
+        <div class="fakeimg" style="background-color: #f1f1f1 !important;">
+          <p>Image</p>
+        </div>
+      </div>
+      <div class="card">
+        <h3>Follow Me</h3>
+        <p>Some text..</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <h4>All copyright reserved by DIU</h4>
+  </div>
+
+</body>
+
+</html>

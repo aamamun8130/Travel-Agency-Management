@@ -1,0 +1,43 @@
+<body (onload)="LoadData()">
+
+    <div class="login-reg-panel">
+        <div class="login-info-box">
+            <h2>Have an account?</h2>
+            <label id="label-register" for="log-reg-show">Login</label>
+            <input type="radio" name="active-log-panel" id="log-reg-show" checked="checked">
+        </div>
+
+        <div class="register-info-box">
+            <h2>Don't have an account?</h2>
+            <label id="label-login" for="log-login-show">Register</label>
+            <input type="radio" name="active-log-panel" id="log-login-show">
+        </div>
+
+        <div class="white-panel">
+            <div class="login-show">
+                <h2>LOGIN</h2>
+                    <input #uEmail type="text" placeholder="Email">
+                    <input #uPassword type="password" placeholder="Password">
+                    <input type="submit" value="Login" (click)="getLoginFeildValue(users.data,uEmail.value,uPassword.value)"> <label name="loginNoti" style="color:red"></label>
+                <a href="">Forgot password?</a>
+            </div>
+            <div class="register-show">
+                <h2>REGISTER</h2>
+                    <input #regUserEmail type="text" placeholder="Email">
+                    <input #regUserPass type="password" placeholder="Password">
+                    <input #regUserConPass type="password" placeholder="Confirm Password">
+                    <select #regSelectType>
+                        <option disabled>--Select Catagory--</option>
+                        <option value="guider">Guide</option>
+                        <option value="agency">Travel Agency</option>
+                    </select>
+                    <input type="submit" value="Register" (click)="getRegFeildValue(users.data,regUserEmail.value,regUserPass.value,regUserConPass.value,regSelectType.value)"> <label name ="regNoti" style="color:red"></label>
+
+            </div>
+        </div>
+    </div>
+    <!-- <ul>
+        <li *ngFor="let user of users.data">{{user.email}}</li>
+    </ul>  -->
+
+</body>

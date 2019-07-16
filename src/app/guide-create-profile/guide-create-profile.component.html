@@ -1,0 +1,42 @@
+<!--The content below is only a placeholder and can be replaced.-->
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+
+</style>
+</head>
+<body>
+
+<h2>Create Your Profile</h2>
+
+<form action="">
+
+  <div class="container">
+    <label for="uname"><b>Name</b></label>
+    <input #un type="text" placeholder="Enter Username" required>
+
+    <label for="psw"><b>Phone No.</b></label>
+    <input #ph type="text" placeholder="Enter phone number" required>
+
+    <label for="uname"><b>Tel No.</b></label>
+    <input #tlno type="text" placeholder="Enter telephone number" required>
+    <label for="uname"><b>Address</b></label>
+    <textarea #adrs style="height: 100px; width:300px;" required></textarea>
+    <button type="button" (click)="gCreateProfile(un.value,ph.value,tlno.value,adrs.value)">Submit</button>
+  </div>
+
+  <div class="container" style="background-color:#f1f1f1">
+    <button type="button" class="cancelbtn">Cancel</button>
+  </div>
+</form>
+
+</body>
+</html>
+
+
+
+
+

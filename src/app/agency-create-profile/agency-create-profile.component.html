@@ -1,0 +1,43 @@
+<!--The content below is only a placeholder and can be replaced.-->
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+
+</style>
+</head>
+<body>
+
+<h2>Create Your Profile</h2>
+
+<form action="">
+
+  <div class="container">
+    <label for="uname"><b>Agency Name</b></label>
+    <input #aname type="text" placeholder="Enter agency name..." required>
+
+    <label for="psw"><b>Phone No.</b></label>
+    <input #aphone type="text" placeholder="Enter phone no..." required>
+
+    <label for="uname"><b>Tel No.</b></label>
+    <input #atelphone type="text" placeholder="Enter Username" required>
+    <label for="uname"><b>Address</b></label>
+    <textarea #aadd style="height: 100px; width:300px;" required></textarea>
+
+
+        
+    <button type="submit" (click)="aCreateProfile(aname.value,aphone.value,atelphone.value,aadd.value)">Submit</button>
+  </div>
+
+  <div class="container" style="background-color:#f1f1f1">
+    <button type="button" class="cancelbtn">Cancel</button>
+  </div>
+</form>
+
+</body>
+</html>
+
+
+
