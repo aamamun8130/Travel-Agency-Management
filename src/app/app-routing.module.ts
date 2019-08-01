@@ -42,7 +42,7 @@ import { AdminPanelComponent } from './admin-panel/admin-panel.component';
 
 
 const routes: Routes = [
-  { path: '', component:  AdminPanelComponent},/////AdminPanelComponent      ///LoginRegistrationComponent   /// UserReviewDetailsComponent
+  { path: '', component:  LoginRegistrationComponent},/////AdminPanelComponent      ///LoginRegistrationComponent   /// UserReviewDetailsComponent
   {
     path: 'AgencyHome',
     component: AgencyHomeComponent,
@@ -57,8 +57,8 @@ const routes: Routes = [
   },
 
   {
-    path: 'GuiderHome',
-    component: GuiderHomeComponent,
+    path: 'AdminHome',
+    component: AdminPanelComponent,
     children: [
       { path: 'gcreateprofile', component: GuideCreateProfileComponent },
       { path: 'gupdateprofile', component: GuiderUpdateProfileComponent },

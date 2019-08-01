@@ -11,133 +11,122 @@ declare var $: any;
 })
 export class AgencySearchGuideComponent implements OnInit {
 
-  public us = [];
-  public findUserList = [];
-  public prevTabId = "NULL";
-  public reviewList= [];
-  public friRevRating = 0.0;
-  public comRevRating = 0.0;
+  public gidhist = [];
+  public his = [];
+  ////////////////////////
+  public gNam = '';
+  public gEm = '';
+  public gPho = '';
+  public gAdd = '';
+  ////////////////////////////
+  public sNam = '';
+  public sTy = '';
+  public sAr = '';
+  public sRes = '';
+
+
 
   constructor(private _us: DataService, private sessionST: SessionStorageService) { }
 
-  viewRating(tabId,revList) {
-    let fri = tabId + "fri";
-    let com = tabId + "com";
-    let userEm = tabId;
-    var friReviewTotal = 0.0;
-    var comReviewTotal = 0.0;
-    var revNo = 0.0;
-
-    console.log(fri);
-    console.log(com);
-
-
-    revList.forEach(user => {
-        if(user.useremail == userEm){
-          friReviewTotal = friReviewTotal + parseFloat(user.friendliness);
-          comReviewTotal = comReviewTotal + parseFloat(user.communicative);
-          revNo += 1.0;
-        }
-
-    } );
-
-    console.log(revNo);
-    if(revNo != 0){
-      this.friRevRating = friReviewTotal/revNo;
-      this.comRevRating = comReviewTotal/revNo;  
-    }
-    else
-  {
-    this.friRevRating = 0.0;
-    this.comRevRating = 0.0; 
-  }
-    console.log(this.friRevRating);
-    console.log(this.comRevRating);
-    //console.log(tabId);
-    if (this.prevTabId != "NULL") {
-      document.getElementById(this.prevTabId)["style"].display = "none";
-    }
-    document.getElementById(tabId.replace('.','').replace('@',''))["style"].display = "block";
-    const ratings = {
-      fri: this.friRevRating,
-      com: this.comRevRating
-
-    };
-    for (const rating in ratings) {
-      //console.log(rating);
-    }
-    // total number of stars
-    const starTotal = 5;
-
-      var starPercentage = (this.friRevRating / starTotal) * 100;
-      var starPercentageRounded = `${(Math.round(starPercentage / 10) * 10)}%`;
-      document.querySelector(`.${fri.replace('.','').replace('@','')} .stars-inner`)["style"].width = starPercentageRounded;
-
-      var starPercentag = (this.comRevRating/ starTotal) * 100;
-      var starPercentageRound = `${(Math.round(starPercentag / 10) * 10)}%`;
-      document.querySelector(`.${com.replace('.','').replace('@','')} .stars-inner`)["style"].width = starPercentageRound;
+  agiHistory(hist, gidpro, spot) {
+    this.his = [];
+    //alert(this.sessionST.retrieve("login-email"));
+    let agnEmail = this.sessionST.retrieve("login-email");
+    //alert(agnEmail);
     
 
-    this.prevTabId = tabId.replace('.','').replace('@','');
-  }
+    hist.forEach(his => {
+      let outhis = {
+        id: '', aid: '', gid: '', spotid: '', date: '', spotname: '', gname: '', gemail: '',
+        gphone: '', gaddress: '', sarea: '', stype: '', srecost: ''
+      };
+      if (his.aid == agnEmail) {
+        outhis.id = his._id;
+        outhis.aid = his.aid;
+        outhis.gid = his.gid;
+        outhis.spotid = his.spotid;
+        outhis.date = his.date;
 
-  emailReplace(email){
-   
-    return email.replace('.','').replace('@','');
-  }
+        gidpro.forEach(gide => {
+          if (gide.id == his.gid) {
+            outhis.gname = gide.name;
+            outhis.gemail = gide.email;
+            outhis.gphone = gide.phone;
+            outhis.gaddress = gide.address;
+            spot.forEach(spt => {
+              if (his.spotid == spt.sid) {
+                outhis.spotname = spt.sname;
+                outhis.sarea = spt.sarea;
+                outhis.stype = spt.stype;
+                outhis.srecost = spt.srecost;
 
+              }
+            });
+          }
 
-  agencySendRequest(email, type,inviteId) {
-    //document.getElementById("load")["style"].display = "block";
-    let inviteButtonId = inviteId + "invite";
-    let loadImgId = inviteId + "img";
-    console.log(email);
-    let senderEmail = this.sessionST.retrieve("login-email");
-    this._us.postHireRequest(email, senderEmail, type).subscribe(data => this.us = data);
-    document.getElementById(loadImgId)["style"].display = "block";
-    document.getElementById(inviteId+'spanid').innerHTML = "Sending...";
-    setTimeout(function () {
-      //document.getElementById("load")["style"].display = "none";
-    document.getElementById(loadImgId)["style"].display = "none";
-    }, 1500);
-    setTimeout(function () {
-      document.getElementById(inviteButtonId).innerHTML = "Request Sent<img style='height:22px;width:30px; padding-left:5px; padding-left:5px;' src='assets/img/conf.png'>";
-      document.getElementById(inviteButtonId).setAttribute("disabled", "true");
-
-    }, 1500);
-
-  }
-
-  searchGuide(userlist, searchInput) {
-    this.findUserList = [];
-    let noti = 0;
-    let srs = searchInput.toLowerCase();
-    if (searchInput == "") {
-      alert("search field empty");
-      return;
-    }
-    userlist.forEach(user => {
-      let add = user.address.toLowerCase();
-      console.log(add);
-      if (add.search(srs) >= 0 && user.type == "guider") {
-        this.findUserList.push(user);
-        noti = 1;
-        console.log("found....");
-        console.log();
-
+        });
 
       }
+      this.his.push(outhis);
 
     });
-
-    if (noti == 0) {
-      alert("Not Found......!!!!!!");
-    }
+      
+    //this.his.push(outhis);
+    // console.log(agn);
   }
 
+  cncl() {
+    document.getElementById('gidedetaildialog').setAttribute("style", "display:none");
+    document.getElementById('spotdialog').setAttribute("style", "display:none");
+
+
+  }
+
+  // guide detais show
+
+  guideDetails(nm, em, ph, add) {
+    this.gNam = nm;
+    this.gEm = em;
+    this.gPho = ph;
+    this.gAdd = add;
+    document.getElementById('gidedetaildialog').setAttribute("style", "display:block");
+    document.getElementById('spotdialog').setAttribute("style", "display:none");
+
+  }
+
+
+  // spot details
+
+  spotDetails(snm, sar, sty, arecos) {
+    this.sNam = snm;
+    this.sAr = sar;
+    this.sTy = sty;
+    this.sRes = arecos;
+
+    document.getElementById('spotdialog').setAttribute("style", "display:block");
+    document.getElementById('gidedetaildialog').setAttribute("style", "display:none");
+
+
+
+  }
+
+  ///  history edit
+
+  histEdit(hisId) {
+    alert('This id Edit ' + hisId);
+  }
+
+
+  /// history delete
+
+  histDelete(hisId) {
+    alert('This id Delete ' + hisId);
+  }
+
+
+
   ngOnInit() {
-    this._us.getUsers().subscribe(data => this.us = data);
-    this._us.getReviewlist().subscribe(data => this.reviewList = data);
+    this._us.getgideHist().subscribe(data => this.gidhist = data);
     //console.log(this.us['data']);
     // console.log('is');
     // for (let i in JSON.parse(this.us)) {

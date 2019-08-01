@@ -22,13 +22,13 @@ export class GuiderHomeComponent implements OnInit {
 
 
   ngOnInit() {
-    let logUserEmail = this.sessionST.retrieve("login-email");
-    if (logUserEmail != null) {
-      this._user.getSingleUserInfo(logUserEmail).subscribe(data => Object.assign(this.loguser, data['data']));
-    }
-    else {
-      window.location.href = "http://localhost:4200";
-    }
+    // let logUserEmail = this.sessionST.retrieve("login-email");
+    // if (logUserEmail != null) {
+    //   this._user.getSingleUserInfo(logUserEmail).subscribe(data => Object.assign(this.loguser, data['data']));
+    // }
+    // else {
+    //   window.location.href = "http://localhost:4200";
+    // }
   }
 
 }

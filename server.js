@@ -58,6 +58,9 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 // bring in models
 let Users = require('./models/users');
+let Guide = require('./models/guide');
+let History = require('./models/history');
+let Spot = require('./models/spot');
 let Agencynotification = require('./models/agencynotification');
 let Guidernotification = require('./models/guidernotification');
 let Review = require('./models/review');
@@ -251,6 +254,92 @@ router.get('/reg/udel/uupdt/userinfo/adminagnupdate/adminagndel/agnadd', functio
     });
 
 });
+
+//   ADD GUIDE API
+
+router.get('/reg/udel/uupdt/userinfo/adminagnupdate/adminagndel/agnadd/addguide', function (req, res) {
+    
+    let guide = new Guide();
+
+    guide.id = "123";
+    guide.email = "mamun@gmail.com";
+    guide.name = "mamun";
+    guide.phone = "09876";
+    guide.address = "Sukrabad";
+    guide.save(function (err) {
+        if (err) {
+            res.send("save not data");
+
+        }
+        else {
+            console.log("save data");
+            res.send("save data");
+
+        }
+    });
+
+});
+
+
+// ADD HISTORY API
+
+router.get('/reg/udel/uupdt/userinfo/adminagnupdate/adminagndel/agnadd/addguide/addhist', function (req, res) {
+    let history = new History();
+    history.aid = "123ddfwed";
+    history.gid = "123";
+    history.spotid = "12";
+    history.date = "23/04/19";
+    history.save(function (err) {
+        if (err) {
+            res.send("save not data");
+
+        }
+        else {
+            console.log("save data");
+            res.send("save data");
+
+        }
+    });
+
+});
+
+
+///  history output
+let ress = {
+    status: 200,
+    data1: [],
+    data2: [],
+    data3: [],
+    message: null
+}
+
+router.get('/reg/udel/uupdt/userinfo/adminagnupdate/adminagndel/agnadd/addguide/addhist/histagdata', function (req, res) {
+    Guide.find({}, function (err, guid) {
+        ress.data2 = guid;
+
+        //res.json(ress);
+    });
+    //console.log("get user api run....");
+    History.find({}, function (err, hist) {
+        ress.data1 = hist;
+
+    });
+
+    Spot.find({}, function (err, sp) {
+        ress.data3 = sp;
+        res.json(ress);
+
+    });
+
+
+
+
+});
+
+
+
+
+
 
 
 

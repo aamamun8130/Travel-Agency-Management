@@ -29,6 +29,8 @@ export class LoginRegistrationComponent implements OnInit {
       if (user.email == em && user.password == pass) {
         if(user.lockstatus == "yes"){
           alert("you are locked by Admin");
+              status = "true";
+
         }
         else if (user.type == "guider") {
           status = "true";

@@ -192,7 +192,7 @@
 
 										</li>
 										<li>
-											<a href="#pages"> <i class="fa fa-file-text icon"><b
+											<a> <i class="fa fa-file-text icon"><b
 														class="bg-primary"></b></i> <span class="pull-right"> <i
 														class="fa fa-angle-down text"></i> <i
 														class="fa fa-angle-up text-active"></i> </span><span
@@ -536,7 +536,7 @@
 								<!-- delete agn profile info-->
 								<dialog id="favDialogdel" style="display: none">
 
-									    <p><label>Are you sure?
+									    <p><label>Delete!!! Are you sure?
 
 											    </label></p>
 									    <menu>
@@ -564,9 +564,9 @@
 												    </label></p>
 										    <menu>
 											      <button (click)="cncl()" value="cancel">Cancel</button>
-											      <button (click)="lockingAgency()" id="confirmBtn"
+											      <button style="display: block" id="lockButton"  (click)="lockingAgency()"
 												value="default">Lock</button>
-											<button (click)="unlockingAgency()" id="confirmBtn"
+											<button style="display: block" (click)="unlockingAgency()" id="unlockButton"
 												value="default">Unlock</button>
 											    </menu>
 										 
@@ -584,7 +584,7 @@
 											    </label></p>
 
 									<p><label>Password:
-											    <input #pasd type="text" value="">
+											    <input #pasd type="password" value="">
 
 											    </label></p>
 
@@ -600,7 +600,7 @@
 								<output aria-live="polite"></output>
 
 
-								<div id="a_div" style="background-color: aqua; display: none;">
+								<div id="a_div" style="background-color: aqua;">
 
 									<div
 										style="background-color: white; text-align: center; height: 50px; padding: 10px; color: tomato;">
@@ -634,7 +634,7 @@
 													(click)=agViewDetails(agency.name,agency.address,agency.phone,agency.telephone,agency._id)>VIEW
 													DETAILS</button>
 												<button
-													(click)=agnLockDia(agency.name,agency.address,agency.phone,agency.telephone,agency._id)>
+													(click)=agnLockDia(agency.name,agency.address,agency.phone,agency.telephone,agency._id,agencyInfo.data,agency.email)>
 													User Locking
 												</button>
 											</td>

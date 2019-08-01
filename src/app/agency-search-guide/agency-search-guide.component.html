@@ -11,6 +11,38 @@
 </head>
 
 <body>
+    <dialog id="gidedetaildialog" style="display: none; width: 50%;">
+          <form method="dialog">
+              <p><label>Name :<label>{{gNam}}</label>
+                  </label></p>
+          <p><label>Email :<label>{{gEm}}</label>
+                  </label></p>
+          <p><label>Phone No:<label>{{gPho}}</label>
+                  </label></p>
+          <p><label>Address :<label>{{gAdd}}</label>
+                  </label></p>
+              <menu>
+                  <button (click)="cncl()" value="cancel">Cancel</button>
+              </menu>
+           
+        </form>
+      </dialog>
+      <dialog id="spotdialog" style="display: none; width: 50%;">
+            <form method="dialog">
+                <p><label>Spot Name :<label>{{sNam}}</label>
+                    </label></p>
+            <p><label>Spot Type :<label>{{sTy}}</label>
+                    </label></p>
+            <p><label>Spot Area:<label>{{sAr}}</label>
+                    </label></p>
+            <p><label>Residant cost :<label>{{sRes}}</label>
+                    </label></p>
+                <menu>
+                    <button (click)="cncl()" value="cancel">Cancel</button>
+                </menu>
+             
+          </form>
+        </dialog>
     <div id="load" class="preloader" style="text-align:center; display: none;">
         <hr>
         <hr>
@@ -20,30 +52,29 @@
         <span style="color:blue; font-size: 30px;">Sending...</span>
     </div>
 
-    <h2>History</h2>
+    <h2 (click)="agiHistory(gidhist.data1,gidhist.data2,gidhist.data3)">History</h2>
 
 
     <div>
         <table id="t01">
-            <tr>
-              <th>Firstname</th>
-              <th>Lastname</th> 
-              <th>Age</th>
+            <tr >
+              <th>Guide ID</th>
+              <th>Gude Name</th> 
+              <th>Spot ID</th>
+              <th>Spot Name</th>
+              <th>Visiting Data</th>
+              <th>Action</th>
             </tr>
-            <tr>
-              <td>Jill</td>
-              <td>Smith</td>
-              <td>50</td>
-            </tr>
-            <tr>
-              <td>Eve</td>
-              <td>Jackson</td>
-              <td>94</td>
-            </tr>
-            <tr>
-              <td>John</td>
-              <td>Doe</td>
-              <td>80</td>
+            <tr *ngFor="let hist of his">
+              <td>{{hist.gid}}</td>
+              <td>{{hist.gname}}<button (click)="guideDetails(hist.gname,hist.gemail,hist.gphone,hist.gaddress)" style="background-color: lightcyan" >Guide Details</button></td>
+              <td>{{hist.spotid}}</td>
+              <td>{{hist.spotname}}<button (click)="spotDetails(hist.spotname,hist.sarea,hist.stype,hist.srecost)" style="background-color: lightcyan" >Spot Details</button></td>
+              <td>{{hist.date}}</td>
+              <td>
+                <button (click)="histEdit(hist.id)" style="background-color: rgb(151, 152, 204);">Edit</button> 
+                <button (click)="histDelete(hist.id)" style="background-color: rgb(252, 48, 48);">Delete</button>
+              </td>
             </tr>
           </table>
     </div>

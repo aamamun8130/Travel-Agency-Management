@@ -63,14 +63,19 @@ export class AdminPanelComponent implements OnInit {
     let ema = em;
     let pass = pas;
     let optype = "logininfoedit";
-    alert("login info edit working"+this.aId);
+    //alert("login info edit working"+this.aId);
     this._user.adminUpdateAgnInfo(optype,this.aId,ema,pass,"","","","","").subscribe();
+    this._user.getUsers().subscribe(data => this.agencyInfo = data);
+    document.getElementById('favDialoge').setAttribute("style", "display: none;");
 
   }
 
   deleteAgnLoginInfo() {
-    alert("delete working"+this.aId);
+    //alert("delete working"+this.aId);
     this._user.admindeleteAgnInfo("logininfodel",this.aId).subscribe();
+    this._user.getUsers().subscribe(data => this.agencyInfo = data);
+    document.getElementById('favDialog').setAttribute("style", "display: none;");
+
 
   }
 //////////////////////////////////////////////////////////////
@@ -85,8 +90,11 @@ editProfile(cName,cAdds,cPhos,cTels,agenId){
 }
 
 editAgnProfile(nm,add,ph,tel){
-  alert("pro edit working"+this.aId);
+  ///alert("pro edit working"+this.aId);
   this._user.adminUpdateAgnInfo("agnproedit",this.aId,"","",nm,ph,tel,add,"").subscribe();
+  this._user.getUsers().subscribe(data => this.agencyInfo = data);
+  document.getElementById('favDialogeee').setAttribute("style", "display: none;");
+
 
 }
 
@@ -99,6 +107,7 @@ proDelDialog(aidd){
 
 deleteAgnProfile(){
   alert("pro delete working"+this.aId);
+  this._user.getUsers().subscribe(data => this.agencyInfo = data);
 }
 
 
@@ -106,7 +115,27 @@ deleteAgnProfile(){
 
 
 
-agnLockDia(cName,cAdds,cPhos,cTels,agenId){
+agnLockDia(cName,cAdds,cPhos,cTels,agenId,userdata,em){
+
+  //console.log(em);
+
+  userdata.forEach(element => {
+    //console.log(element.lockstatus);
+    if(element.lockstatus == "yes" && element.email == em ){
+     //console.log("locked");
+     document.getElementById('unlockButton').setAttribute("style", "display: block;");
+     document.getElementById('lockButton').setAttribute("style", "display: none;");
+    }
+    else if(element.lockstatus == "" && element.email == em ){
+      document.getElementById('lockButton').setAttribute("style", "display: block;");
+     document.getElementById('unlockButton').setAttribute("style", "display: none;");
+
+
+    }
+
+    
+  });
+
   this.cNam = cName;
     this.cAdd = cAdds;
     this.cPho = cPhos;
@@ -117,15 +146,21 @@ agnLockDia(cName,cAdds,cPhos,cTels,agenId){
 }
 
 lockingAgency(){
-  alert("locking" + this.aId);
+  //alert("locking" + this.aId);
   this._user.adminUpdateAgnInfo("lock",this.aId,"","","","","","","yes").subscribe();
+  this._user.getUsers().subscribe(data => this.agencyInfo = data);
+  document.getElementById('favDialoglock').setAttribute("style", "display: none;");
 
 
 }
 
 unlockingAgency(){
-  alert("unlocking" + this.aId);
+  //alert("unlocking" + this.aId);
   this._user.adminUpdateAgnInfo("unlock",this.aId,"","","","","","","").subscribe();
+  this._user.getUsers().subscribe(data => this.agencyInfo = data);
+  document.getElementById('favDialoglock').setAttribute("style", "display: none;");
+
+
 }
 
 
@@ -138,8 +173,11 @@ addAgenDia(){
 }
 
 addAgnAction(em,pas){
-  alert("working");
+  //alert("working");
   this._user.admininsertAgnInfo(em,pas).subscribe();
+  document.getElementById('favaddagndia').setAttribute("style", "display: none;");
+  this._user.getUsers().subscribe(data => this.agencyInfo = data);
+
 
 }
 

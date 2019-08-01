@@ -39,7 +39,7 @@ export class DataService {
 
   createUserProfile(ema,nam,ph,tel,add) : Observable<IUser[]>{
     return this.http.get<IUser[]>("http://localhost:4600/hhh/reg/udel/uupdt",{params : {email:ema,name:nam,phone:ph,telephone:tel,address:add}});
-  }adminagndel
+  }
 
   adminUpdateAgnInfo(optype,id,ema,pass,nam,ph,tel,add,lsta) : Observable<IUser[]>{
     return this.http.get<IUser[]>("http://localhost:4600/hhh/reg/udel/uupdt/userinfo/adminagnupdate",{params : {operatype:optype,iid:id,email:ema,password:pass,name:nam,phone:ph,telephone:tel,address:add,lockstatus:lsta}});
@@ -55,5 +55,9 @@ export class DataService {
 
   postReview(uem,rem,fn,cm) : Observable<IUser[]>{
     return this.http.get<IUser[]>("http://localhost:4600/hhh/reg/udel/uupdt/userinfo/search/sendrequest/guidernotilist/agencynotilist/review",{params : {uemail:uem,remail:rem,friendliness:fn,communication:cm}});
+  }
+
+  getgideHist() : Observable<IUser[]>{
+    return this.http.get<IUser[]>("http://localhost:4600/hhh/reg/udel/uupdt/userinfo/adminagnupdate/adminagndel/agnadd/addguide/addhist/histagdata");
   }
 }
